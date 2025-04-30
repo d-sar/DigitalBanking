@@ -49,6 +49,7 @@ public class DigitalBankingBackendApplication  {
                     e.printStackTrace();
                 }
             });
+
             List<BankAccountDTO> bankAccounts = bankAccountService.bankAccountList();
             for (BankAccountDTO bankAccount:bankAccounts){
                 for (int i = 0; i <10 ; i++) {
@@ -60,9 +61,13 @@ public class DigitalBankingBackendApplication  {
                     }
                     bankAccountService.credit(accountId,10000+Math.random()*120000,"Credit");
                     bankAccountService.debit(accountId,1000+Math.random()*9000,"Debit");
+
                 }
             }
+            System.out.println(bankAccountService.listCustomers());
         };
+
+
     }
 
     //@Bean
