@@ -7,6 +7,7 @@
 3. [Installation et démarrage](#-installation-et-démarrage)
 4. [Structure du Projet](#structure-du-projet)
 5. [Tests](#tests)
+6. [Sécurity]
      
 
 ## **Description**
@@ -41,7 +42,7 @@ Backend d'une application web pour gérer des comptes bancaires, leurs clients e
    ```
 2. Configurer la base de données (application.properties):
 
-     ```bash
+     ```java
       server.port=8085
       spring.datasource.url=jdbc:h2:mem:DigitalBanking-db
       spring.h2.console.enabled=true
@@ -112,7 +113,7 @@ src/
 
 ## **Tests**
 ### **1- Tester la couche Repository**
-```bash
+```java
 @Bean
 CommandLineRunner start(CustomerRepository customerRepository,
 BankAccountRepository bankAccountRepository,
@@ -171,7 +172,7 @@ Stream.of("Ahmed","Ali","Laila").forEach(name->{
 ![img_2.png](images/TaccountOperation.png)
 
 ### **3- Tester la couche Services**
-```bash
+```java
 @Bean
 CommandLineRunner commandLineRunner(BankAccountService bankAccountService){
 return args -> {
@@ -212,7 +213,7 @@ bankAccountService.saveSavingBankAccount(Math.random()*120000,5.5,customer.getId
 ![img_4.png](images/testService.png)
 
 ### **5- RESTController**
-```bash
+```java
 @RestController
 @AllArgsConstructor
 @Slf4j
@@ -259,7 +260,7 @@ public class CustomerRestController {
 ![img_1.png](images/IdCustomer.png)
 
 ### **7- BankAccountRestAPI**
-```bash
+```java
 
 @RestController
 @CrossOrigin("*")
@@ -300,10 +301,8 @@ public class BankAccountRestAPI {
         this.bankAccountService.credit(creditDTO.getAccountId(),creditDTO.getAmount(),creditDTO.getDescription());
         return creditDTO;
     }
-    @PostMapping("/accounts/transfer")
-    public void transfer(@RequestBody TransferRequestDTO transferRequestDTO) throws BankAccountNotFoundException, BalanceNotSufficientException {
-        this.bankAccountService.transfer(
-        
+}
+   
 ```
 ### **8- Resultat de test**
 #### la liste des comptes :
@@ -311,3 +310,11 @@ public class BankAccountRestAPI {
 
 #### le compte dans ID=e4909232-8b68-4aad-844c-97f972e135d1:
 ![img_3.png](images/idAccount.png)
+#### test avec swagger-ui
+![img.png](img.png)
+
+![img_1.png](img_1.png)
+
+![img_2.png](img_2.png)
+
+## **Sécurity**
