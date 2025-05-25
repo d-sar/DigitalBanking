@@ -66,8 +66,6 @@ public class DigitalBankingBackendApplication  {
             }
             System.out.println(bankAccountService.listCustomers());
         };
-
-
     }
 
     //@Bean
